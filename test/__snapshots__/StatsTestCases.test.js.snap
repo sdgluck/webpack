@@ -616,7 +616,7 @@ webpack x.x.x compiled <CLR=32>successfully</CLR> in X ms"
 exports[`StatsTestCases should print correct stats for common-libs 1`] = `
 "asset react.js 3.01 KiB [emitted] [minimized] (name: react) 1 related asset
 modules by path ../../../node_modules/react/ 6.48 KiB
-  ../../../node_modules/react/index.js 190 bytes [built] [code generated]
+  ../../../node_modules/react/index.js 190 bytes [not cacheable] [built] [code generated]
   ../../../node_modules/react/cjs/react.production.min.js 6.3 KiB [built] [code generated]
 ./react.js 69 bytes [built] [code generated]
 ../../../node_modules/object-assign/index.js 2.06 KiB [built] [code generated]
@@ -749,16 +749,19 @@ webpack x.x.x compiled successfully in X ms"
 `;
 
 exports[`StatsTestCases should print correct stats for define-plugin 1`] = `
-"asset 123.js 1.3 KiB [emitted] (name: main)
-./index.js 24 bytes [built] [code generated]
+"asset 123.js 1.53 KiB [emitted] (name: main)
+./index.js 95 bytes [not cacheable] [built] [code generated]
+./cacheable.js 72 bytes [built] [code generated]
 webpack x.x.x compiled successfully in X ms
 
-asset 321.js 1.3 KiB [emitted] (name: main)
-./index.js 24 bytes [built] [code generated]
+asset 321.js 1.53 KiB [emitted] (name: main)
+./index.js 95 bytes [not cacheable] [built] [code generated]
+./cacheable.js 72 bytes [built] [code generated]
 webpack x.x.x compiled successfully in X ms
 
-asset both.js 1.3 KiB [emitted] (name: main)
-./index.js 24 bytes [built] [code generated]
+asset both.js 1.53 KiB [emitted] (name: main)
+./index.js 95 bytes [not cacheable] [built] [code generated]
+./cacheable.js 72 bytes [built] [code generated]
 webpack x.x.x compiled successfully in X ms"
 `;
 

@@ -3949,7 +3949,7 @@ declare class JavascriptParser extends Parser {
 	hooks: Readonly<{
 		evaluateTypeof: HookMap<
 			SyncBailHook<
-				[UnaryExpression],
+				[UnaryExpression, NormalModule],
 				undefined | null | BasicEvaluatedExpression
 			>
 		>;
@@ -3958,7 +3958,10 @@ declare class JavascriptParser extends Parser {
 		>;
 		evaluateIdentifier: HookMap<
 			SyncBailHook<
-				[ThisExpression | MemberExpression | MetaProperty | Identifier],
+				[
+					ThisExpression | MemberExpression | MetaProperty | Identifier,
+					NormalModule
+				],
 				undefined | null | BasicEvaluatedExpression
 			>
 		>;
@@ -4146,7 +4149,7 @@ declare class JavascriptParser extends Parser {
 		assignMemberChain: HookMap<
 			SyncBailHook<[AssignmentExpression, string[]], boolean | void>
 		>;
-		typeof: HookMap<SyncBailHook<[Expression], boolean | void>>;
+		typeof: HookMap<SyncBailHook<[Expression, NormalModule], boolean | void>>;
 		importCall: SyncBailHook<[Expression], boolean | void>;
 		topLevelAwait: SyncBailHook<[Expression], boolean | void>;
 		call: HookMap<SyncBailHook<[Expression], boolean | void>>;
@@ -4167,7 +4170,9 @@ declare class JavascriptParser extends Parser {
 		>;
 		optionalChaining: SyncBailHook<[ChainExpression], boolean | void>;
 		new: HookMap<SyncBailHook<[NewExpression], boolean | void>>;
-		expression: HookMap<SyncBailHook<[Expression], boolean | void>>;
+		expression: HookMap<
+			SyncBailHook<[Expression, NormalModule], boolean | void>
+		>;
 		expressionMemberChain: HookMap<
 			SyncBailHook<[Expression, string[]], boolean | void>
 		>;
@@ -4347,11 +4352,7 @@ declare class JavascriptParser extends Parser {
 		defined: (arg0: string) => any,
 		...args: AsArray<T>
 	): R;
-	callHooksForName<T, R>(
-		hookMap: HookMap<SyncBailHook<T, R>>,
-		name: string,
-		...args: AsArray<T>
-	): R;
+	callHooksForName(hookMap: any, name: any, ...args: any[]): any;
 	callHooksForInfo<T, R>(
 		hookMap: HookMap<SyncBailHook<T, R>>,
 		info: ExportedVariableInfo,

@@ -113,9 +113,9 @@ describe("BuildDependencies", () => {
 		expect(results[4].loader).toBeGreaterThan(now2);
 		expect(results[4].config).toBeGreaterThan(now2);
 		expect(results[4].uncached).toBe(results[4].config);
-		// 4 -> 5 should stay cached, but uncacheable module still rebuilds
+		// 4 -> 5 should be invalidated due to define-plugin definition usage and un-cacheable module rebuilds
 		expect(results[5].loader).toBe(results[4].loader);
-		expect(results[5].config).toBe(results[4].config);
+		expect(results[5].config).toBeGreaterThan(results[4].config);
 		expect(results[5].uncached).toBeGreaterThan(now3);
 	}, 100000);
 });
