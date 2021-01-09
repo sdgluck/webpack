@@ -489,7 +489,8 @@ declare abstract class ByTypeGenerator extends Generator {
 }
 declare const CIRCULAR_CONNECTION: unique symbol;
 declare class Cache {
-	constructor();
+	constructor(ignoreModules?: any);
+	ignoreModulePaths: Set<any>;
 	hooks: {
 		get: AsyncSeriesBailHook<
 			[
@@ -505,6 +506,7 @@ declare class Cache {
 		endIdle: AsyncParallelHook<[]>;
 		shutdown: AsyncParallelHook<[]>;
 	};
+	addIgnoredModulePath(path?: any): void;
 	get<T>(
 		identifier: string,
 		etag: null | Etag,
@@ -537,6 +539,7 @@ declare abstract class CacheFacade {
 	getItemCache(identifier: string, etag: null | Etag): ItemCacheFacade;
 	getLazyHashedEtag(obj: HashableObject): Etag;
 	mergeEtags(a: Etag, b: Etag): Etag;
+	addIgnoredModulePath(path?: any): void;
 	get<T>(
 		identifier: string,
 		etag: null | Etag,
